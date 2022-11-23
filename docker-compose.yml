@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+    backend-part:
+      image: wassimmnasri/my_backend-app_image:latest
+      volumes:
+      - db_data:/var/lib/images
+      ports: 
+        - "3000:3000"
+      restart: always
+
+    frontend-part:
+      depends_on:
+        - backend-part
+      image: wassimmnasri/my_frontend-app_image:latest
+      ports:
+        - "4200:4200"
+      restart: always
+
+volumes:
+  db_data: {}
